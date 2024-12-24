@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native"; // Importing useNavigation hook
+import { useNavigation } from "@react-navigation/native";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [registeredUsers, setRegisteredUsers] = useState({});
-  const navigation = useNavigation(); // Using navigation hook
+  const navigation = useNavigation();
 
   useEffect(() => {
     const loadStorageData = async () => {
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       const storedUser = await AsyncStorage.getItem("currentUser");
 
       if (storedUsers) setRegisteredUsers(JSON.parse(storedUsers));
-      if (storedUser) setUser(JSON.parse(storedUser)); // Fixed typo: 'parsye' -> 'parse'
+      if (storedUser) setUser(JSON.parse(storedUser));
     };
     loadStorageData();
   }, []);
@@ -23,15 +23,13 @@ export const AuthProvider = ({ children }) => {
   const register = async (username, password) => {
     const updatedUsers = { ...registeredUsers, [username]: password };
     setRegisteredUsers(updatedUsers);
-
     await AsyncStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
   };
 
   const login = async (username, password) => {
     if (registeredUsers[username] && registeredUsers[username] === password) {
       setUser({ username });
-      alert("Successfully logged as " + username + "!");
-
+      alert("Successfully logged in as " + username + "!");
       await AsyncStorage.setItem("currentUser", JSON.stringify({ username }));
     } else {
       alert("Invalid Username or Password!");
@@ -41,9 +39,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     setUser(null);
     await AsyncStorage.removeItem("currentUser");
-
-    // Navigate to the login page after logging out
-    navigation.navigate("login"); // Ensure "Login" is the name of your login screen in the navigator
+    navigation.navigate("login");
   };
 
   const isLoggedIn = !!user;
@@ -56,3 +52,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export default AuthProvider;
