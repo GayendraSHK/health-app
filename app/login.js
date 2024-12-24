@@ -16,10 +16,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [error, setError] = useState(""); // State for holding error messages
-  const { login } = useAuth();
+  const { login } = useAuth(); // Assume login returns a boolean indicating success or failure
   const router = useRouter();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     // Clear any previous errors
     setError("");
 
@@ -41,9 +41,14 @@ const Login = () => {
       return;
     }
 
-    // If all validations pass, proceed with login
-    login(username, password);
-    router.push("/home");
+    // Validate credentials with the login function
+    const isLoginSuccessful = await login(username, password);
+
+    if (isLoginSuccessful) {
+      router.push("/home"); // Navigate to home on success
+    } else {
+      setError("Invalid username or password. Please try again."); // Display error on failure
+    }
   };
 
   const navigateToRegister = () => {
