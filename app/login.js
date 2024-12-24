@@ -7,12 +7,14 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons"; // Import the icon library
 import { useRouter } from "expo-router";
 import { useAuth } from "./context/AuthContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [error, setError] = useState(""); // State for holding error messages
   const { login } = useAuth();
   const router = useRouter();
@@ -66,13 +68,25 @@ const Login = () => {
           value={username}
           onChangeText={setUsername}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter Your Password"
-          secureTextEntry
-          value={password}
-          onChangeText={setPassword}
-        />
+        <View style={styles.passwordContainer}>
+          <TextInput
+            style={styles.passwordInput}
+            placeholder="Enter Your Password"
+            secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword
+            value={password}
+            onChangeText={setPassword}
+          />
+          <TouchableOpacity
+            onPress={() => setShowPassword((prev) => !prev)}
+            style={styles.eyeIcon}
+          >
+            <Icon
+              name={showPassword ? "visibility" : "visibility-off"} // Change icon based on state
+              size={24}
+              color="gray"
+            />
+          </TouchableOpacity>
+        </View>
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
@@ -135,6 +149,22 @@ const styles = StyleSheet.create({
     color: "red",
     fontSize: 14,
     marginBottom: 10,
+  },
+  passwordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "black",
+    borderWidth: 1,
+    borderRadius: 6,
+    marginBottom: 20,
+    paddingHorizontal: 10,
+  },
+  passwordInput: {
+    flex: 1,
+    paddingVertical: 10,
+  },
+  eyeIcon: {
+    marginLeft: 10,
   },
 });
 

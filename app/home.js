@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList, ActivityIndicator, TouchableOpacity, Image } from "react-native";
-import axios from 'axios'; // Import axios to make API requests
-import { useAuth } from "./context/AuthContext"; // Ensure you have this context set up
+import { LinearGradient } from 'expo-linear-gradient';
+import axios from 'axios';
+import { useAuth } from "./context/AuthContext";
 
 // Floating button to display the click count
 const FloatingButton = ({ count }) => {
@@ -16,32 +17,28 @@ const Home = () => {
   const { user, logout } = useAuth();
   const [loading, setLoading] = useState(true);
   const [healthTips, setHealthTips] = useState([]);
-  const [clickCount, setClickCount] = useState(0); // Track click count
+  const [clickCount, setClickCount] = useState(0);
 
-  // Function to fetch health tips and random images
   const fetchHealthTips = async () => {
-    setLoading(true); // Show loading indicator while fetching
+    setLoading(true);
     try {
-      const tips = []; // To store multiple tips
-
-      // Fetching 5 random health tips with a 1-second interval
+      const tips = [];
       for (let i = 0; i < 5; i++) {
-        // Introduce a 1-second delay between each API request
-        await new Promise((resolve) => setTimeout(resolve, 1000));  // 1000 ms = 1 second
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const response = await axios.get('https://zenquotes.io/api/random');
-        const imageResponse = await axios.get('https://picsum.photos/200'); // Fetch random image from Picsum API
+        const imageResponse = await axios.get('https://picsum.photos/200');
 
         if (response.data && response.data.length > 0) {
-          const randomTip = response.data[0]; // Get the first quote from the response
+          const randomTip = response.data[0];
           tips.push({
             quote: randomTip.q,
             author: randomTip.a,
-            imageUrl: imageResponse.request.responseURL // URL of the random image from Picsum
-          }); // Add the fetched advice and image URL to the tips array
+            imageUrl: imageResponse.request.responseURL
+          });
         }
       }
 
-      setHealthTips(tips); // Update state with the fetched tips
+      setHealthTips(tips);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching health tips:", error);
@@ -49,16 +46,14 @@ const Home = () => {
     }
   };
 
-  // Fetch tips on initial load
   useEffect(() => {
     fetchHealthTips();
-  }, []); // Empty dependency array to run only once when the component mounts
+  }, []);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={['#ff7e5f', '#feb47b']} style={styles.container}>
       <Text style={styles.title}>Welcome, {user?.username ?? 'Guest'}!</Text>
 
-      {/* Main content container */}
       <View style={styles.contentContainer}>
         {loading ? (
           <ActivityIndicator size="large" color="#008dfb" />
@@ -68,10 +63,9 @@ const Home = () => {
             data={healthTips}
             renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => setClickCount((prevCount) => prevCount + 1)} // Increment count on item click
+                onPress={() => setClickCount((prevCount) => prevCount + 1)}
               >
                 <View style={styles.card}>
-                  {/* Display the image */}
                   <Image source={{ uri: item.imageUrl }} style={styles.cardImage} />
                   <Text style={styles.cardTitle}>Health Tip</Text>
                   <Text style={styles.healthTip}>{item.quote ?? 'No advice available'}</Text>
@@ -83,29 +77,24 @@ const Home = () => {
         )}
       </View>
 
-      {/* Floating button displaying click count */}
       <FloatingButton count={clickCount} />
 
-      {/* Buttons row at the bottom */}
       <View style={styles.bottomButtons}>
-        {/* More Tips Button */}
         <TouchableOpacity style={styles.moreTipsButton} onPress={fetchHealthTips}>
           <Text style={styles.moreTipsText}>Get New Tips</Text>
         </TouchableOpacity>
 
-        {/* Logout Button */}
         <TouchableOpacity style={styles.logoutButton} onPress={() => logout()}>
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     padding: 20,
   },
   title: {
@@ -113,6 +102,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
+    color: '#fff',
   },
   contentContainer: {
     flex: 1,
