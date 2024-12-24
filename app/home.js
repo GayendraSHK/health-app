@@ -110,18 +110,18 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#004D40', // Dark Green
+    color: '#004D40',
   },
   subtitle: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: '#757575', // Neutral Gray
+    color: '#757575',
   },
   contentContainer: {
     flex: 1,
   },
   card: {
-    backgroundColor: '#F5F5F5', // Light Gray
+    backgroundColor: '#F5F5F5',
     marginVertical: 10,
     padding: 15,
     borderRadius: 10,
@@ -141,16 +141,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
-    color: '#FFC107', // Amber Yellow
+    color: '#FFC107',
   },
   healthTip: {
     fontSize: 16,
-    color: '#00796B', // Teal Green
+    color: '#00796B',
     marginBottom: 5,
   },
   author: {
     fontSize: 14,
-    color: '#6D6D6D', // Neutral Gray
+    color: '#6D6D6D',
   },
   floatingButton: {
     position: 'absolute',
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     right: 20,
     width: 60,
     height: 60,
-    backgroundColor: '#66BFBF', // Teal Green
+    backgroundColor: '#66BFBF',
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   moreTipsButton: {
-    backgroundColor: '#FFC107', // Amber Yellow
+    backgroundColor: '#FFC107',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   logoutButtonHeader: {
-    backgroundColor: '#004D40', // Dark Green
+    backgroundColor: '#004D40',
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderRadius: 5,

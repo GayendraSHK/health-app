@@ -7,7 +7,7 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons"; // Import the icon library
+import Icon from "react-native-vector-icons/MaterialIcons";
 import { useRouter } from "expo-router";
 import { useAuth } from "./context/AuthContext";
 
@@ -29,13 +29,13 @@ const Login = () => {
       return;
     }
 
-    // Check for username length (optional, based on your requirements)
+    // Check for username length
     if (username.trim().length < 3) {
       setError("Username must be at least 3 characters long.");
       return;
     }
 
-    // Check for password length (optional)
+    // Check for password length
     if (password.trim().length < 6) {
       setError("Password must be at least 6 characters long.");
       return;
@@ -52,12 +52,12 @@ const Login = () => {
   };
 
   const navigateToRegister = () => {
-    router.push("/register");
+    router.push("/register"); // Navigate to register
   };
 
   return (
     <ImageBackground
-      source={require("./assets/background1.jpg")}
+      source={require("./assets/background1.png")}
       style={styles.background}
       resizeMode="cover"
     >
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "white",
+    color: "004D40",
   },
   input: {
     width: "100%",
@@ -125,14 +125,13 @@ const styles = StyleSheet.create({
   },
   overlay: {
     padding: 30,
-    backgroundColor: "#dda7ff", // Optional: Adds a semi-transparent overlay for better readability
+    backgroundColor: "#79DCD5",
     borderRadius: 14,
     width: "90%",
-    // Shadow for Android
-    elevation: 15, // Elevation adds shadow on Android
+    elevation: 15, // adds shadow
   },
   button: {
-    backgroundColor: "#a91cff",
+    backgroundColor: "#004D40",
     paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 10,
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   linkText: {
-    color: "#f8e8ff",
+    color: "#004D40",
     fontSize: 18,
   },
   errorText: {
