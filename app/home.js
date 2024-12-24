@@ -51,12 +51,20 @@ const Home = () => {
   }, []);
 
   return (
-    <LinearGradient colors={['#ff7e5f', '#feb47b']} style={styles.container}>
-      <Text style={styles.title}>Welcome, {user?.username ?? 'Guest'}!</Text>
+    <LinearGradient colors={['#fff', '#79DCD5']} style={styles.container}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.title}>Hello, {user?.username ?? 'Guest'}!</Text>
+          <Text style={styles.subtitle}>Welcome to the HealthApp</Text>
+        </View>
+        <TouchableOpacity style={styles.logoutButtonHeader} onPress={() => logout()}>
+          <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+      </View>
 
       <View style={styles.contentContainer}>
         {loading ? (
-          <ActivityIndicator size="large" color="#008dfb" />
+          <ActivityIndicator size="large" color="#66BFBF" />
         ) : (
           <FlatList
             keyExtractor={(item, index) => index.toString()}
@@ -83,10 +91,6 @@ const Home = () => {
         <TouchableOpacity style={styles.moreTipsButton} onPress={fetchHealthTips}>
           <Text style={styles.moreTipsText}>Get New Tips</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.logoutButton} onPress={() => logout()}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -97,18 +101,27 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
-    color: '#fff',
+    color: '#004D40', // Dark Green
+  },
+  subtitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#757575', // Neutral Gray
   },
   contentContainer: {
     flex: 1,
   },
   card: {
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#F5F5F5', // Light Gray
     marginVertical: 10,
     padding: 15,
     borderRadius: 10,
@@ -128,15 +141,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+    color: '#FFC107', // Amber Yellow
   },
   healthTip: {
     fontSize: 16,
-    color: '#333',
+    color: '#00796B', // Teal Green
     marginBottom: 5,
   },
   author: {
     fontSize: 14,
-    color: '#555',
+    color: '#6D6D6D', // Neutral Gray
   },
   floatingButton: {
     position: 'absolute',
@@ -144,7 +158,7 @@ const styles = StyleSheet.create({
     right: 20,
     width: 60,
     height: 60,
-    backgroundColor: '#008dfb',
+    backgroundColor: '#66BFBF', // Teal Green
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
@@ -158,10 +172,10 @@ const styles = StyleSheet.create({
   bottomButtons: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 20,
+    paddingVertical: 10,
   },
   moreTipsButton: {
-    backgroundColor: '#008dfb',
+    backgroundColor: '#FFC107', // Amber Yellow
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
@@ -170,15 +184,15 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
   },
-  logoutButton: {
-    backgroundColor: '#f44336',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+  logoutButtonHeader: {
+    backgroundColor: '#004D40', // Dark Green
+    paddingVertical: 8,
+    paddingHorizontal: 15,
     borderRadius: 5,
   },
   logoutText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
   },
 });
 
