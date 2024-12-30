@@ -15,9 +15,9 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // State to toggle confirm password visibility
-  const [error, setError] = useState(""); // State for error messages
+  const [showPassword, setShowPassword] = useState(false); 
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false); 
+  const [error, setError] = useState(""); 
   const { register } = useAuth();
   const router = useRouter();
 
@@ -56,7 +56,7 @@ const Register = () => {
   };
 
   const navigateToLogin = () => {
-    router.push("/login"); // Navigate to the login page
+    router.push("/login"); 
   };
 
   return (
@@ -81,7 +81,7 @@ const Register = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Enter your password"
-            secureTextEntry={!showPassword} // Toggle secureTextEntry based on state
+            secureTextEntry={!showPassword} 
             value={password}
             onChangeText={setPassword}
           />
@@ -100,7 +100,7 @@ const Register = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Confirm your password"
-            secureTextEntry={!showConfirmPassword} // Toggle secureTextEntry based on state
+            secureTextEntry={!showConfirmPassword}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
           />

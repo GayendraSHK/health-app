@@ -31,10 +31,10 @@ export const AuthProvider = ({ children }) => {
       setUser({ username });
       alert("Successfully logged in as " + username + "!");
       await AsyncStorage.setItem("currentUser", JSON.stringify({ username }));
-      return true; // Login successful
+      return true; 
     } else {
       alert("Invalid Username or Password!");
-      return false; // Login failed
+      return false;
     }
   };
 
