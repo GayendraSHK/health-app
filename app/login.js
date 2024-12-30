@@ -14,9 +14,9 @@ import { useAuth } from "./context/AuthContext";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
-  const [error, setError] = useState(""); // State for holding error messages
-  const { login } = useAuth(); // Assume login returns a boolean indicating success or failure
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const { login } = useAuth();
   const router = useRouter();
 
   const handleLogin = async () => {
@@ -45,14 +45,14 @@ const Login = () => {
     const isLoginSuccessful = await login(username, password);
 
     if (isLoginSuccessful) {
-      router.push("/home"); // Navigate to home on success
+      router.push("/home"); 
     } else {
-      setError("Invalid username or password. Please try again."); // Display error on failure
+      setError("Invalid username or password. Please try again."); 
     }
   };
 
   const navigateToRegister = () => {
-    router.push("/register"); // Navigate to register
+    router.push("/register"); 
   };
 
   return (
@@ -77,7 +77,7 @@ const Login = () => {
           <TextInput
             style={styles.passwordInput}
             placeholder="Enter Your Password"
-            secureTextEntry={!showPassword} // Toggle secureTextEntry based on showPassword
+            secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
           />
@@ -86,7 +86,7 @@ const Login = () => {
             style={styles.eyeIcon}
           >
             <Icon
-              name={showPassword ? "visibility" : "visibility-off"} // Change icon based on state
+              name={showPassword ? "visibility" : "visibility-off"}
               size={24}
               color="gray"
             />
