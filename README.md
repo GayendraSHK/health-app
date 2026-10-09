@@ -100,11 +100,3 @@ This project has no license specified. Add a `LICENSE` file if you want to make 
 Questions or help — open an issue or contact the maintainer.
 
 ---
-
-If you'd like, I can also:
-
-- Add environment/config support
-- Add unit or integration tests
-- Wire a sample backend endpoint for authentication
-
-Tell me which of the above you'd like next.
